@@ -9,12 +9,12 @@ const Pricing: React.FC = () => {
     {
       tier: SubscriptionTier.FREE,
       price: "0 DA",
-      description: "Pour tester l'IA sur un petit projet.",
+      description: "Teste 10 images / jour",
       cta: "Essai Gratuit",
       features: [
-        { text: "1 Caméra live", included: true },
-        { text: "Détection 2 types d'EPI", included: true },
-        { text: "Historique 12h", included: true },
+        { text: "Détection tous types d'EPI", included: true },
+        { text: "Historique des analyses", included: false },
+        { text: "Caméra Live (Temps réel)", included: false },
         { text: "Alertes Mobile", included: false },
         { text: "Rapports PDF", included: false },
       ]
@@ -72,7 +72,7 @@ const Pricing: React.FC = () => {
                 <span className="text-4xl font-black text-white">{plan.price}</span>
                 {plan.price !== "Sur Devis" && <span className="text-slate-500 text-sm">/mois</span>}
               </div>
-              <p className="text-slate-400 text-sm mb-8">{plan.description}</p>
+              <p className="text-slate-400 text-sm mb-8 italic">{plan.description}</p>
               <ul className="space-y-4 mb-10 border-t border-slate-700 pt-8">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-sm">

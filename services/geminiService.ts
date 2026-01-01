@@ -69,7 +69,7 @@ export const detectPPE = async (base64Image: string): Promise<DetectionResult> =
               text: `Analyse cette image pour la sécurité industrielle (HSE).
               Identifie les équipements de protection individuelle (EPI) suivants : Casque de chantier, Gilet de haute visibilité, Gants de protection, Lunettes de sécurité, Chaussures de sécurité.
 
-              Pour chaque objet détecté, fournis impérativement sa boîte englobante au format [ymin, xmin, ymax, xmax] avec des valeurs entre 0 et 1000.
+              Pour CHAQUE EQUIPEMENT DÉTECTÉ, fournis impérativement sa boîte englobante au format [ymin, xmin, ymax, xmax] avec des valeurs entre 0 et 1000. C'est crucial pour l'affichage visuel.
               Si un équipement obligatoire est absent, marque-le comme 'missing'.
               Réponds strictement au format JSON selon le schéma défini.`
             }
