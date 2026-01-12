@@ -25,8 +25,8 @@ const App: React.FC = () => {
       case 'home':
         return (
           <>
-            <Hero 
-              onStart={() => setCurrentView('detection')} 
+            <Hero
+              onStart={() => setCurrentView('detection')}
               onSolutions={() => setCurrentView('pricing')}
             />
             <Features />
@@ -48,7 +48,7 @@ const App: React.FC = () => {
         return (
           <div className="pt-4 bg-slate-900 min-h-screen">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-              <button 
+              <button
                 onClick={() => setCurrentView('home')}
                 className="mb-4 text-slate-400 hover:text-white flex items-center gap-2 transition-colors group text-sm font-medium"
               >
@@ -59,7 +59,7 @@ const App: React.FC = () => {
                 <h1 className="text-2xl md:text-3xl font-bold text-white mb-1 uppercase tracking-tight">Espace Démo AI</h1>
                 <p className="text-slate-400 text-sm">Analyse de conformité PPE en temps réel par vision artificielle.</p>
               </div>
-              <DetectionTool isFullPage={true} />
+              <DetectionTool isFullPage={true} onNavigateToPricing={() => setCurrentView('pricing')} />
             </div>
           </div>
         );

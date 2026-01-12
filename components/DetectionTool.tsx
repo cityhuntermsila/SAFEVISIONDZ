@@ -179,7 +179,7 @@ const DetectionTool: React.FC<DetectionToolProps> = ({ isFullPage = false, onNav
                           </p>
                           <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs">
                             <button
-                              onClick={() => window.location.reload()} // Simulation de navigation vers pricing
+                              onClick={() => onNavigateToPricing?.()}
                               className="flex-1 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-sm shadow-xl shadow-orange-600/20 transition-all"
                             >
                               S'abonner maintenant

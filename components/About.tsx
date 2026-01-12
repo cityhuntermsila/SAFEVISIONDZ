@@ -2,38 +2,6 @@
 import React from 'react';
 
 const About: React.FC = () => {
-  const team = [
-    {
-      name: "Djeha Rami",
-      role: "CEO",
-      desc: "15 ans d'expérience en HSE industriel.",
-      image: "/images/team-rami.png"
-    },
-    {
-      name: "Khalfat Zakarya",
-      role: "Lead AI",
-      desc: "Expert Deep Learning & Computer Vision.",
-      image: "/images/team-zakarya.png"
-    },
-    {
-      name: "Tabbakh Mostefa",
-      role: "CTO",
-      desc: "Architecte systèmes temps réel.",
-      image: "/images/team-mostefa.png"
-    },
-    {
-      name: "Lebouazda Naoui",
-      role: "Expert HSE",
-      desc: "Consultant certifié en gestion des risques.",
-      image: "/images/team-naoui.png"
-    },
-    {
-      name: "Salamani Hanane",
-      role: "Support",
-      desc: "Dédiée à la satisfaction client.",
-      image: "/images/team-hanane.png"
-    }
-  ];
 
   const features = [
     {
@@ -131,38 +99,6 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Team Section Title */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">Notre Équipe</h2>
-          <div className="w-20 h-2 bg-blue-500 mx-auto mt-6 rounded-full"></div>
-          <p className="text-slate-500 mt-8 max-w-2xl mx-auto font-medium text-lg italic">"Les experts qui propulsent l'innovation HSE en Algérie."</p>
-        </div>
-
-        {/* Team Layout */}
-        <div className="flex flex-wrap justify-center gap-10 max-w-6xl mx-auto pb-12">
-          {team.map((m, i) => (
-            <div key={i} className="bg-slate-800 p-10 rounded-[3rem] border border-slate-700 text-center hover:border-orange-500/50 transition-all shadow-xl hover:shadow-orange-500/10 group flex flex-col h-full w-full sm:w-[calc(50%-20px)] lg:w-[calc(33.333%-27px)] items-center">
-              <div className="w-48 h-48 rounded-[3rem] mb-8 overflow-hidden bg-slate-700 shadow-xl group-hover:scale-105 group-hover:rotate-1 transition-transform duration-500 border-2 border-slate-700 group-hover:border-blue-500">
-                <img
-                  src={m.image}
-                  alt={m.name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Fallback if image doesn't exist
-                    (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=2563eb&color=fff&size=200`;
-                  }}
-                />
-              </div>
-              <h4 className="text-2xl font-black text-white mb-3 tracking-tighter uppercase">{m.name}</h4>
-              <p className="text-orange-500 text-xs font-black uppercase tracking-[0.3em] mb-6 px-4 py-1 bg-orange-500/10 rounded-full border border-orange-500/20">{m.role}</p>
-              <p className="text-slate-400 text-base leading-relaxed flex-grow">{m.desc}</p>
-              <div className="mt-10 pt-8 border-t border-slate-700/50 flex justify-center gap-6 w-full opacity-40 group-hover:opacity-100 transition-opacity duration-300">
-                <i className="fab fa-linkedin text-slate-400 hover:text-blue-500 cursor-pointer text-2xl"></i>
-                <i className="fas fa-envelope text-slate-400 hover:text-white cursor-pointer text-2xl"></i>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
