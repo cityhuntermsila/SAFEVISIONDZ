@@ -1,0 +1,7 @@
+{
+  "name": "SafeVision AI - PPE Detection SaaS",
+  "description": "A cutting-edge SaaS platform using AI vision to ensure workplace safety by detecting Personal Protective Equipment (PPE) in real-time.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
