@@ -2,7 +2,7 @@
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { DetectionResult } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 const PPE_SCHEMA = {
   type: Type.OBJECT,
@@ -20,19 +20,19 @@ const PPE_SCHEMA = {
       items: {
         type: Type.OBJECT,
         properties: {
-          item: { 
+          item: {
             type: Type.STRING,
             description: "Nom de l'équipement (ex: Casque, Gilet, Gants, Lunettes)."
           },
-          status: { 
+          status: {
             type: Type.STRING,
             description: "Statut: 'detected', 'missing', ou 'incorrect'."
           },
-          confidence: { 
+          confidence: {
             type: Type.NUMBER,
             description: "Indice de confiance entre 0 et 1."
           },
-          recommendation: { 
+          recommendation: {
             type: Type.STRING,
             description: "Action corrective recommandée."
           },
@@ -59,7 +59,7 @@ export const detectPPE = async (base64Image: string): Promise<DetectionResult> =
         {
           parts: [
             { inlineData: { mimeType: 'image/jpeg', data: base64Data } },
-            { 
+            {
               text: `Analyse cette image pour la sécurité industrielle (HSE). 
               Identifie les équipements de protection individuelle (EPI) suivants : Casque de chantier, Gilet de haute visibilité, Gants de protection, Lunettes de sécurité, Chaussures de sécurité.
               

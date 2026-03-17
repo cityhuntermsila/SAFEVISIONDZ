@@ -18,7 +18,7 @@ const DetectionTool: React.FC<DetectionToolProps> = ({ isFullPage = false, onNav
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DetectionResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'camera' | 'upload'>('camera');
+  const [activeTab, setActiveTab] = useState<'camera' | 'upload'>('upload');
   const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
   const [showPaywall, setShowPaywall] = useState(false);
 
@@ -150,8 +150,8 @@ const DetectionTool: React.FC<DetectionToolProps> = ({ isFullPage = false, onNav
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-slate-800 rounded-3xl border border-slate-700 overflow-hidden shadow-2xl relative">
               <div className="flex border-b border-slate-700">
-                <button onClick={() => { setActiveTab('camera'); setUploadedPreview(null); setResult(null); setShowPaywall(false); }} className={`flex-1 py-4 font-bold text-sm ${activeTab === 'camera' ? 'text-orange-400 bg-slate-700/50 border-b-2 border-orange-500' : 'text-slate-500'}`}>CAMÉRA LIVE</button>
                 <button onClick={() => { setActiveTab('upload'); stopCamera(); setResult(null); setShowPaywall(false); }} className={`flex-1 py-4 font-bold text-sm ${activeTab === 'upload' ? 'text-orange-400 bg-slate-700/50 border-b-2 border-orange-500' : 'text-slate-500'}`}>IMPORT PHOTO</button>
+                <button onClick={() => { setActiveTab('camera'); setUploadedPreview(null); setResult(null); setShowPaywall(false); }} className={`flex-1 py-4 font-bold text-sm ${activeTab === 'camera' ? 'text-orange-400 bg-slate-700/50 border-b-2 border-orange-500' : 'text-slate-500'}`}>CAMÉRA LIVE</button>
               </div>
 
               <div className="p-6">
@@ -195,22 +195,50 @@ const DetectionTool: React.FC<DetectionToolProps> = ({ isFullPage = false, onNav
                       )}
                     </div>
                   ) : (
-                    <div className="relative w-full h-full flex items-center justify-center cursor-pointer" onClick={() => !uploadedPreview && fileInputRef.current?.click()}>
+                    <div className="relative w-full h-full flex flex-col items-center justify-center gap-4">
                       {uploadedPreview ? (
-                        <div className="relative inline-block max-h-full max-w-full">
-                          <img id="preview-element" src={uploadedPreview} className="max-h-[400px] w-auto block" alt="Preview" />
+                        <div className="relative inline-block max-h-full max-w-full" onClick={() => fileInputRef.current?.click()} style={{cursor:'pointer'}}>
+                          <img id="preview-element" src={uploadedPreview} className="max-h-[180px] sm:max-h-[340px] w-auto block rounded-xl" alt="Preview" />
                           <div className="absolute inset-0 pointer-events-none">
                             {renderDetections()}
                           </div>
                         </div>
                       ) : (
-                        <div className="text-center group">
-                          <div className="w-20 h-20 bg-blue-600/10 rounded-3xl flex items-center justify-center border border-blue-500/20 mx-auto mb-6 group-hover:scale-110 transition-transform">
-                            <i className="fas fa-image text-3xl text-blue-500"></i>
+                        <>
+                          {/* Zone de drop / import manuel */}
+                          <div className="text-center group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
+                            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600/10 rounded-3xl flex items-center justify-center border border-blue-500/20 mx-auto mb-2 group-hover:scale-110 transition-transform">
+                              <i className="fas fa-upload text-xl sm:text-2xl text-blue-500"></i>
+                            </div>
+                            <p className="text-white font-bold text-sm sm:text-base mb-1">Importer une photo</p>
+                            <p className="text-slate-500 text-[10px] sm:text-xs uppercase tracking-widest">ou choisissez un exemple ci-dessous</p>
                           </div>
-                          <p className="text-white font-bold text-lg mb-2">Importer une photo</p>
-                          <p className="text-slate-500 text-xs uppercase tracking-widest">Testez l'IA avec vos images</p>
-                        </div>
+
+                          {/* Photos exemples */}
+                          <div className="flex gap-2 sm:gap-3 mt-1 px-2">
+                            {[1, 2, 3].map((n) => (
+                              <button
+                                key={n}
+                                onClick={() => {
+                                  setResult(null);
+                                  setError(null);
+                                  setUploadedPreview(`/images/exemple${n}.jpg`);
+                                }}
+                                className="group relative flex-1 h-16 sm:h-20 rounded-xl overflow-hidden border-2 border-slate-600 hover:border-orange-500 transition-all shadow-lg"
+                                title={`Exemple ${n}`}
+                              >
+                                <img
+                                  src={`/images/exemple${n}.jpg`}
+                                  alt={`Exemple ${n}`}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                />
+                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-end justify-center pb-1">
+                                  <span className="text-[9px] font-black text-white uppercase tracking-wider">Ex. {n}</span>
+                                </div>
+                              </button>
+                            ))}
+                          </div>
+                        </>
                       )}
                     </div>
                   )}
