@@ -48,13 +48,7 @@ const App: React.FC = () => {
         return (
           <div className="pt-4 bg-slate-900 min-h-screen">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-              <button 
-                onClick={() => setCurrentView('home')}
-                className="mb-4 text-slate-400 hover:text-white flex items-center gap-2 transition-colors group text-sm font-medium"
-              >
-                <i className="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
-                Retour à l'accueil
-              </button>
+
               <div className="text-center mb-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-white mb-1 uppercase tracking-tight">LANCER LE PROTOTYPE</h1>
                 <p className="text-slate-400 text-sm">Analyse de conformité PPE en temps réel par vision artificielle.</p>

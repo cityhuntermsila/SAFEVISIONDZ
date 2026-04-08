@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { DetectionResult } from "../types";
 
@@ -20,19 +19,19 @@ const PPE_SCHEMA = {
       items: {
         type: Type.OBJECT,
         properties: {
-          item: {
+          item: { 
             type: Type.STRING,
             description: "Nom de l'équipement (ex: Casque, Gilet, Gants, Lunettes)."
           },
-          status: {
+          status: { 
             type: Type.STRING,
             description: "Statut: 'detected', 'missing', ou 'incorrect'."
           },
-          confidence: {
+          confidence: { 
             type: Type.NUMBER,
             description: "Indice de confiance entre 0 et 1."
           },
-          recommendation: {
+          recommendation: { 
             type: Type.STRING,
             description: "Action corrective recommandée."
           },
@@ -59,7 +58,7 @@ export const detectPPE = async (base64Image: string): Promise<DetectionResult> =
         {
           parts: [
             { inlineData: { mimeType: 'image/jpeg', data: base64Data } },
-            {
+            { 
               text: `Analyse cette image pour la sécurité industrielle (HSE). 
               Identifie les équipements de protection individuelle (EPI) suivants : Casque de chantier, Gilet de haute visibilité, Gants de protection, Lunettes de sécurité, Chaussures de sécurité.
               
@@ -88,7 +87,7 @@ export const detectPPE = async (base64Image: string): Promise<DetectionResult> =
     };
   } catch (error) {
     console.error("PPE Detection Error:", error);
-    throw new Error("Échec de l'analyse IA. Veuillez vérifier votre connexion ou l'image fournie.");
+    throw new Error("Échec de l'analyse IA. Veuillez vérifier votre connexion ou l'image fourie.");
   }
 };
 
